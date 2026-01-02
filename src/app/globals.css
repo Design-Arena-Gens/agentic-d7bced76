@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(120% 120% at 50% 0%, #12061f 0%, #020409 70%, #000 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(236, 72, 153, 0.35);
+  color: #fdf4ff;
+}
+
+@layer utilities {
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.15;
+      transform: scale(1.15);
+    }
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(8deg) scale(1.05);
+    }
+    100% {
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  @keyframes scan {
+    0% {
+      opacity: 0.05;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    50% {
+      opacity: 0.25;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    100% {
+      opacity: 0.05;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 14s ease-in-out infinite;
+  }
+
+  .animate-orbit {
+    animation: orbit 18s ease-in-out infinite;
+  }
+
+  .animate-scan {
+    animation: scan 20s ease-in-out infinite;
+  }
+}
